@@ -5,6 +5,8 @@ const tasks = require("../data/tasks");
 const comments = require("../data/comments");
 const error = require("../utilities/error.js");
 
+function getComments(id) {}
+
 // get all tasks, or filter by querystring assignedTo or createdBy
 router.get("/", (req, res, next) => {
   if (req.query.assignedTo) {
@@ -29,7 +31,10 @@ router.get("/", (req, res, next) => {
 // get task by task ID
 router.get("/:id", (req, res, next) => {
   const task = tasks.find((p) => p.id == req.params.id);
-  if (task) res.json(task);
+  const filteredComments = comments.filter(
+    (comment) => comment.taskId == req.params.id
+  );
+  if (task) res.json({ task, comments: filteredComments });
   else next(error(404, "Task not found"));
 });
 
@@ -70,16 +75,26 @@ router.patch("/:id", (req, res, next) => {
     }
   });
   if (!task) return next(error(404, "Task not found"));
-  const tsk = {
-    ...task,
-    title: req.body.title,
-    description: req.body.description,
-    assignedTo: req.body.assignedTo,
-    status: req.body.status,
-    dateLastUpdated: date,
-  };
-  tasks[index] = tsk;
-  res.json(tsk);
+  if (
+    req.body.createdBy &&
+    req.body.title &&
+    req.body.description &&
+    req.body.assignedTo &&
+    req.body.status
+  ) {
+    const tsk = {
+      ...task,
+      title: req.body.title,
+      description: req.body.description,
+      assignedTo: req.body.assignedTo,
+      status: req.body.status,
+      dateLastUpdated: date,
+    };
+    tasks[index] = tsk;
+    res.json(tsk);
+  } else {
+    next(error(400, "Insufficient Data"));
+  }
 });
 
 router.delete("/:id", (req, res, next) => {
