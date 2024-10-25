@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const tasksRouter = require("./routes/tasks.js");
+const usersRouter = require("./routes/users.js");
+const commentsRouter = require("./routes/comments.js");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -34,6 +36,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/tasks", tasksRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/comments", commentsRouter);
 
 // 404 Error Handling Middleware
 app.use((req, res, next) => {
