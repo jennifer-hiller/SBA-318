@@ -35,6 +35,12 @@ app.get("/", (req, res) => {
   const options = { users };
   res.render("index", options);
 });
+app.get("/task", (req, res) => {
+  const options = req.body;
+  options.assignedTo = users.find((user) => options.assignedTo == user.id);
+  options.createdBy = users.find((user) => options.createdBy == user.id);
+  res.render("task", options);
+});
 
 app.use("/api/tasks", tasksRouter);
 app.use("/api/users", usersRouter);
