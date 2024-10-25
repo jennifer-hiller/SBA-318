@@ -1,4 +1,8 @@
-# JIRA-clone API
+# JIRA-clone
+
+If you go to "/" you will see a form. Submit the form and it will output the HTML for the second page. However, I was not able to get the form to actually go to the next page.
+
+## JIRA-clone API
 
 This API provides endpoints to manage comments related to tasks, users, and comments. Below are the available routes and their usage.
 

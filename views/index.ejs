@@ -58,7 +58,6 @@
           }),
         });
         const makeTask = await response.json();
-        console.log(makeTask);
         await fetch("/task", {
           method: "POST",
           headers: {
