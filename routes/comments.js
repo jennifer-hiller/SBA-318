@@ -65,7 +65,7 @@ router.patch("/:id", (req, res, next) => {
   });
 
   if (comment) res.json(comment);
-  else next();
+  else next(error(404, "Comment not found"));
 });
 
 router.delete("/:id", (req, res, next) => {
@@ -77,7 +77,7 @@ router.delete("/:id", (req, res, next) => {
   });
 
   if (comment) res.json(comment);
-  else next();
+  else next(error(404, "Comment not found"));
 });
 
 module.exports = router;
