@@ -1,5 +1,7 @@
 # JIRA-clone
 
+I will be using this for my capstone project.
+
 If you go to "/" you will see a form. Submit the form and it will output the HTML for the second page.
 
 ## JIRA-clone API
