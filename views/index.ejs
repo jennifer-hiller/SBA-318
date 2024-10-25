@@ -19,8 +19,8 @@
       impedit laborum vero possimus mollitia maxime quam. Ipsam dolores minus,
       provident quia odio maxime iure repudiandae, eos molestiae labore optio.
     </p>
-    <form id="form">
-      <input type="hidden" name="createdBy" id="createdBy" />
+    <form id="form" action="/task" method="post">
+      <input type="hidden" name="createdBy" id="createdBy" value="1" />
       <p>
         <label for="title">Title: </label
         ><input type="text" name="title" id="title" class="form-control" />
@@ -57,14 +57,7 @@
             assignedTo: Number(formData.get("assignedTo")),
           }),
         });
-        const makeTask = await response.json();
-        await fetch("/task", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(makeTask),
-        });
+        e.target.submit();
       });
     </script>
   </body>

@@ -1,6 +1,6 @@
 # JIRA-clone
 
-If you go to "/" you will see a form. Submit the form and it will output the HTML for the second page. However, I was not able to get the form to actually go to the next page.
+If you go to "/" you will see a form. Submit the form and it will output the HTML for the second page.
 
 ## JIRA-clone API
 
