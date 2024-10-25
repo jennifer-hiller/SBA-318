@@ -4,6 +4,7 @@ const PORT = 3000;
 const tasksRouter = require("./routes/tasks.js");
 const usersRouter = require("./routes/users.js");
 const commentsRouter = require("./routes/comments.js");
+const users = require("./data/users.js");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +32,7 @@ app.set("view engine", "ejs"); // register the template engine
 app.use(express.static("./styles"));
 
 app.get("/", (req, res) => {
-  const options = {};
+  const options = { users };
   res.render("index", options);
 });
 
